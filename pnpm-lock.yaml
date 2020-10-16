@@ -1,0 +1,33 @@
+dependencies:
+  '@blessed/neo-blessed': 1.0.0
+lockfileVersion: 5.1
+packages:
+  /@blessed/neo-blessed/1.0.0:
+    dependencies:
+      node-pty: 0.9.0
+      term.js: 0.0.7
+    dev: false
+    engines:
+      node: '>= 8.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-RdaOrmvUBCJwRPXSndJgCOQDUxIfwV3+17mhjNHemyYEsZoS6gSdnm7NyGVcnNxOY63ohAAlyw4gOVhKujaWhA==
+  /nan/2.14.2:
+    dev: false
+    resolution:
+      integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
+  /node-pty/0.9.0:
+    dependencies:
+      nan: 2.14.2
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-MBnCQl83FTYOu7B4xWw10AW77AAh7ThCE1VXEv+JeWj8mSpGo+0bwgsV+b23ljBFwEM9OmsOv3kM27iUPPm84g==
+  /term.js/0.0.7:
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha1-Um8kz8Dy72+A9RfJ4n2ulHvIcxU=
+specifiers:
+  '@blessed/neo-blessed': ^1.0.0

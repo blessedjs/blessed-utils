@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@blessed/neo-blessed": "^1.0.0"
+	}
+}
