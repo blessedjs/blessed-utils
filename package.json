@@ -1,5 +1,36 @@
 {
-	"dependencies": {
-		"@blessed/neo-blessed": "^1.0.0"
-	}
+  "name": "@blessed/utils",
+  "description": "Util functions for blessed-cli apps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blessedjs/blessed-utils.git"
+  },
+  "keywords": [
+    "cli",
+    "terminal",
+    "blessed",
+    "utils"
+  ],
+  "author": "Rajasegar Chandran <rajasegar.c@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blessedjs/blessed-utils/issues"
+  },
+  "homepage": "https://github.com/blessedjs/blessed-utils#readme",
+  "dependencies": {
+    "@blessed/neo-blessed": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
+  }
 }
