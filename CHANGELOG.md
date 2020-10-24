@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/blessedjs/blessed-utils/compare/v2.0.0...v2.0.1) (2020-10-24)
+
+
+### Bug Fixes
+
+* class export with object ([b342212](https://github.com/blessedjs/blessed-utils/commit/b342212c9c8efd55014d28d21a0fe6276128f49c))
+
 ## [1.0.2](https://github.com/blessedjs/blessed-utils/compare/v1.0.1...v1.0.2) (2020-10-24)
 
 
