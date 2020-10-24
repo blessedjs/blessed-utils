@@ -4,74 +4,78 @@ const path = require('path');
 const fs = require('fs');
 const neoblessed = require('@blessed/neo-blessed');
 
-function getManifest() {
-  let pkg = {
-    scripts: {},
-    devDependencies: {},
-    dependencies: {},
-  };
-
-  try {
-    pkg = require(process.cwd() + '/package.json');
-  } catch (e) {
-    // throw error
+class BlessedUtils {
+  constructor(screen, configFile, styles) {
+    this.screen = screen;
+    this.configFile = configFile;
+    this.styles = styles;
   }
 
-  return pkg;
-}
+  getManifest() {
+    let pkg = {
+      scripts: {},
+      devDependencies: {},
+      dependencies: {},
+    };
 
-function getTheme(configFile, styles) {
-  const configPath =
-    process.env.OS === 'Windows_NT'
-      ? path.resolve(process.env.APPDATA, `${configFile}`)
-      : path.resolve(process.env.HOME, `.config/${configFile}`);
+    try {
+      pkg = require(process.cwd() + '/package.json');
+    } catch (e) {
+      // throw error
+    }
 
-  let config = { theme: 'Dracula' };
-  try {
-    config = require(configPath);
-  } catch (e) {
-    // Write config file
-    fs.writeFile(configPath, JSON.stringify(config, null, 2), (err) => {
-      if (err) throw err;
+    return pkg;
+  }
+
+  getTheme() {
+    const configPath =
+      process.env.OS === 'Windows_NT'
+        ? path.resolve(process.env.APPDATA, `${this.configFile}`)
+        : path.resolve(process.env.HOME, `.config/${this.configFile}`);
+
+    let config = { theme: 'Dracula' };
+    try {
+      config = require(configPath);
+    } catch (e) {
+      // Write config file
+      fs.writeFile(configPath, JSON.stringify(config, null, 2), (err) => {
+        if (err) throw err;
+      });
+    }
+
+    const colors = require(`blessed-themes/themes/${config.theme}`);
+    const theme = this.styles(colors.colors);
+    return theme;
+  }
+
+  runCommand(cmd) {
+    const theme = this.getTheme();
+    const {
+      terminal: { border, style },
+    } = theme;
+    const terminal = neoblessed.terminal({
+      parent: this.screen,
+      top: 'center',
+      left: 'center',
+      width: '50%',
+      height: '50%',
+      border,
+      style,
+      label: cmd,
+      fullUnicode: true,
+      screenKeys: false,
+      cwd: process.env.PWD,
     });
+    this.screen.append(terminal);
+    this.screen.render();
+    terminal.focus();
+
+    terminal.key('escape', function () {
+      terminal.detach();
+    });
+
+    terminal.pty.write(`${cmd}\r\n`);
   }
-
-  const colors = require(`blessed-themes/themes/${config.theme}`);
-  const theme = styles(colors.colors);
-  return theme;
 }
 
-function runCommand(screen, cmd, configFile) {
-  const theme = getTheme(configFile);
-  const {
-    terminal: { border, style },
-  } = theme;
-  const terminal = neoblessed.terminal({
-    parent: screen,
-    top: 'center',
-    left: 'center',
-    width: '50%',
-    height: '50%',
-    border,
-    style,
-    label: cmd,
-    fullUnicode: true,
-    screenKeys: false,
-    cwd: process.env.PWD,
-  });
-  screen.append(terminal);
-  screen.render();
-  terminal.focus();
-
-  terminal.key('escape', function () {
-    terminal.detach();
-  });
-
-  terminal.pty.write(`${cmd}\r\n`);
-}
-
-module.exports = {
-  getManifest,
-  getTheme,
-  runCommand,
-};
+module.exports = BlessedUtils;
