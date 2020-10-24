@@ -37,7 +37,7 @@ function getTheme(configFile, styles) {
   }
 
   const colors = require(`blessed-themes/themes/${config.theme}`);
-  const theme = require(styles)(colors.colors);
+  const theme = styles(colors.colors);
   return theme;
 }
 
