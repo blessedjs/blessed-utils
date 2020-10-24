@@ -45,7 +45,7 @@ function getTheme(configFile) {
 'use strict';
 
 
-module.exports = function runCommand(screen, cmd, configFile) {
+function runCommand(screen, cmd, configFile) {
   const theme = getTheme(configFile);
   const {
     terminal: { border, style },
