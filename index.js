@@ -18,9 +18,9 @@ function getManifest() {
   }
 
   return pkg;
-};
+}
 
-function getTheme(configFile) {
+function getTheme(configFile, styles) {
   const configPath =
     process.env.OS === 'Windows_NT'
       ? path.resolve(process.env.APPDATA, `${configFile}`)
@@ -37,13 +37,9 @@ function getTheme(configFile) {
   }
 
   const colors = require(`blessed-themes/themes/${config.theme}`);
-  const theme = require('../styles')(colors.colors);
+  const theme = require(styles)(colors.colors);
   return theme;
-};
-
-
-'use strict';
-
+}
 
 function runCommand(screen, cmd, configFile) {
   const theme = getTheme(configFile);
@@ -72,7 +68,7 @@ function runCommand(screen, cmd, configFile) {
   });
 
   terminal.pty.write(`${cmd}\r\n`);
-};
+}
 
 module.exports = {
   getManifest,
