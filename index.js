@@ -78,4 +78,4 @@ class BlessedUtils {
   }
 }
 
-module.exports = BlessedUtils;
+module.exports = { BlessedUtils };
