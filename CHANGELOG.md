@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/blessedjs/blessed-utils/compare/v1.0.1...v1.0.2) (2020-10-24)
+
+
+### Bug Fixes
+
+* pass styles function directly to getTheme ([8a100c5](https://github.com/blessedjs/blessed-utils/commit/8a100c57dc7add8781c1aab4e757f3e11b47e6bc))
+
 # 1.0.0 (2020-10-24)
 
 
